@@ -4,15 +4,6 @@
 #include <pluginsdk.h>
 #include <searchers.h>
 
-uintptr_t GetAddress(uintptr_t AddressOfCall, int index, int length)
-{
-    if (!AddressOfCall)
-        return 0;
-
-    long delta = *(long*)(AddressOfCall + index);
-    return (AddressOfCall + delta + length);
-}
-
 bool __cdecl init([[maybe_unused]] const Version client_version)
 {
     NtCurrentPeb()->BeingDebugged = FALSE;
