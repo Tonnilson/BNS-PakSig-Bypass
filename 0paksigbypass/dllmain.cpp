@@ -24,6 +24,7 @@ bool __cdecl init([[maybe_unused]] const Version client_version)
             });
         const auto data = s1->as_bytes();
 
+        // Look for FPakPlatformFile::BroadcastPakChunkSignatureCheckFailure(FPakChunkSignatureCheckFailedData*)
         auto result = std::search(data.begin(), data.end(), pattern_searcher(xorstr_("40 32 ED 41 FF 46 3C 41 8B 46 3C 41 8B 4E 30 83 E9 01 48 63 F9")));
         if (result != data.end()) {
             uintptr_t sigFailureAddr = (uintptr_t)&result[0] - 0x3C;
